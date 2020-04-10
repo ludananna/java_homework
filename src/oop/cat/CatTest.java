@@ -11,5 +11,22 @@ public class CatTest {
         tom.eat("mouse");
         tom.isHungry();
         tom.play("ball");
+
+
+        tom.eat("milk");
+      //  Tom is eating milk
+        tom.isHungry();
+        tom.eat("mouse");
+       // Tom is not hungry
+        tom.sleep(5);
+//        Tom is going to sleep for 5 hours
+        tom.isHungry();
+//        Tom is hungry
+        tom.eat("mouse");
+//        Tom is eating mouse
+        tom.isHungry();
+//        Tom is not hungry
+        tom.play("ball");
+//        Tom is playing around with ball
     }
 }

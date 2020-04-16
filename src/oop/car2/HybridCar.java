@@ -1,6 +1,6 @@
 package oop.car2;
 
-public class HybridCar extends Car implements Tankable , Chargable {
+public class HybridCar extends Car implements Tankable, Chargable {
     public HybridCar(String manufacturer, String model) {
         super(manufacturer, model);
     }
@@ -13,7 +13,7 @@ public class HybridCar extends Car implements Tankable , Chargable {
 
     @Override
     public void charge() {
-        System.out.println(" hybrid car is charging");
+        System.out.println(getManufacturer() + " model " + getModel() + " hybrid car is charging");
 
     }
 

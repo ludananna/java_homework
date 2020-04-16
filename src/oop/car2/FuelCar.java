@@ -7,7 +7,7 @@ public class FuelCar extends Car implements Tankable {
 
     @Override
     public void tank() {
-        System.out.println( getManufacturer() + " model " + getModel() + " fuel car is filling up.");
+        System.out.println(getManufacturer() + " model " + getModel() + " fuel car is filling up.");
 
 
     }

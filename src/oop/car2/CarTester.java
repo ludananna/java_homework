@@ -12,7 +12,8 @@ public class CarTester {
         for (Car car : cars) {
             if (car instanceof Tankable) {
                 ((Tankable) car).tank();
-            } else if (car instanceof Chargable) {
+            }
+            if (car instanceof Chargable) {
                 ((Chargable) car).charge();
             }
         }

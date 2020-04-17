@@ -10,12 +10,16 @@ public class CarTester {
 
         Car[] cars = {tesla, honda, toyota};
         for (Car car : cars) {
-            if (car instanceof Tankable) {
-                ((Tankable) car).tank();
-            }
-            if (car instanceof Chargable) {
-                ((Chargable) car).charge();
-            }
+            checkCar(car);
+        }
+    }
+
+    private static void checkCar(Car car) {
+        if (car instanceof Tankable) {
+            ((Tankable) car).tank();
+        }
+        if (car instanceof Chargable) {
+            ((Chargable) car).charge();
         }
     }
 }

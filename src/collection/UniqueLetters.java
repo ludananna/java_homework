@@ -4,15 +4,22 @@ import java.util.*;
 
 public class UniqueLetters {
     public static void main(String[] args) {
-        String sentence = "This is a test text";
-        String[] words = sentence.split("\\s+");
         Set<Character> set = new LinkedHashSet<>();
+
+
+        String sentence = "This is a test text";
+        System.out.println("sentence = " + sentence);
+        String[] words = sentence.split("\\s+");
+        System.out.println("words = " + Arrays.toString(words));
         for (String word : words) {
-            for (char aChar : word.toCharArray()) {
+            char[] chars = word.toCharArray();
+            System.out.println("word = " + word + ", chars = " + Arrays.toString(chars));
+            for (char aChar : chars) {
+                System.out.println("aChar = " + aChar);
                 set.add(aChar);
+                System.out.println("set = " + set);
             }
         }
 
-        System.out.println("set = " + set);
     }
 }

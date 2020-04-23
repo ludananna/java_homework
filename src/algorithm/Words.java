@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Words {
     public static void main(String[] args) {
-        String words = "For given text find the longest and the shortest words";
+        String words = "For given text find the longest, and the shortest words";
 
         String[] sentence = words.split("\\s+");
         int maxValue = Integer.MIN_VALUE;

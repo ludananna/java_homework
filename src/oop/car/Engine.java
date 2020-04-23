@@ -45,27 +45,27 @@ public class Engine {
     public void setStartedStatus(boolean startedStatus) {
         isStartedStatus = startedStatus;
     }
-    //    public void startEngine(boolean isStartedStatus) {
-//        if (isStartedStatus = true) {
-//            System.out.println("Car VW Golf is starting Diesel engine");
-//        } else {
-//
-//            System.out.println("Car VW Golf cant be driven cause engine stopped");
-//        }
-//    }
-//    public void stopEngine(boolean isStartedStatus){
-//        if(isStartedStatus){
-//            System.out.println("Car VW Golf is stopping Diesel engine");
-//        }else {
-//            System.out.println("Diesel engine has been stopped");
-//        }
-//    }
-//    int hp = 0;
-//
-//    public void hp(int HorsePower, int speed) {
+   public void startEngine(boolean isStartedStatus) {
+     if (isStartedStatus = true) {
+          System.out.println("Car VW Golf is starting Diesel engine");
+     } else {
+
+          System.out.println("Car VW Golf cant be driven cause engine stopped");
+       }
+ }
+  public void stopEngine(boolean isStartedStatus){
+      if(isStartedStatus){
+         System.out.println("Car VW Golf is stopping Diesel engine");
+      }else {
+           System.out.println("Diesel engine has been stopped");
+      }
+   }
+  int hp = 0;
+
+    public void hp(int HorsePower, int speed) {
 
 
-    }
+  }}
 
 
 

@@ -31,11 +31,11 @@ public class Car {
         } else {
             System.out.println("Car " + name + " cant be driven cause engine stopped");
         }
-//        int i = (int) (RemainingFuelAmount * 5);
-//        System.out.println(i);
-//        if (i < km) {
-//            km = i;
-//        }
+        int i = (int) (RemainingFuelAmount * 5);
+        System.out.println(i);
+        if (i < km) {
+            km = i;
+        }
 
 
     }

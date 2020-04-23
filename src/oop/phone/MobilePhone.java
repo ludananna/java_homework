@@ -1,5 +1,7 @@
 package oop.phone;
 
+import java.util.Objects;
+
 public class MobilePhone {
 
     private String brand;

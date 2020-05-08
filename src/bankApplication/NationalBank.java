@@ -1,9 +1,15 @@
 package bankApplication;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class NationalBank {
     private Map<String, Bank> banks;
+
+
+    public NationalBank() {
+        banks = new HashMap<>();
+    }
 
     public NationalBank(Map<String, Bank> banks) {
         this.banks = banks;
@@ -13,8 +19,14 @@ public class NationalBank {
         return banks.get(name);
     }
 
+    public void registerBank(Bank bank){
+        banks.put(bank.getName(), bank);
+    }
 
+    @Override
+    public String toString() {
+        return "NationalBank{" +
+                "banks=" + banks +
+                '}';
+    }
 }
-//        - Bank registration system, something like National Bank which:
-//        * contains all registered banks
-//        * can return Bank by name

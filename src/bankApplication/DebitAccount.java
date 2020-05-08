@@ -3,7 +3,7 @@ package bankApplication;
 public class DebitAccount extends BankAccount {
 
 
-    public DebitAccount(String name, int balance, double percent, String accountNumber) {
+    public DebitAccount(String name, int balance, int percent, String accountNumber) {
         super(name, balance, percent, accountNumber);
     }
 

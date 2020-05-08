@@ -4,13 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bank {
+
     private String name;
     private Map<String, BankAccount> accounts;
-
-    public BankAccount getBankAccount(String accountNumber) {
-        return accounts.get(accountNumber);
-
-    }
 
     public Bank() {
         accounts = new HashMap<>();
@@ -21,19 +17,28 @@ public class Bank {
         this.accounts = accounts;
     }
 
-    public String getName() {
-        return name;
+    public BankAccount getBankAccount(String accountNumber) {
+        return accounts.get(accountNumber);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void registerAccount(BankAccount account){
+        accounts.put(account.getAccountNumber(),account);
+    }
+
+
+    public String getName() {
+        return name;
     }
 
     public Map<String, BankAccount> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Map<String, BankAccount> accounts) {
-        this.accounts = accounts;
+    @Override
+    public String toString() {
+        return "Bank{" +
+                "name='" + name + '\'' +
+                ", accounts=" + accounts +
+                '}';
     }
 }

@@ -3,7 +3,7 @@ package bankApplication;
 public class CreditAccount extends BankAccount {
     int creditLimit;
 
-    public CreditAccount(String name, int balance, double percent, String accountNumber, int creditLimit) {
+    public CreditAccount(String name, int balance, int percent, String accountNumber, int creditLimit) {
         super(name, balance, percent, accountNumber);
         this.creditLimit = creditLimit;
     }

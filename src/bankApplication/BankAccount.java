@@ -3,16 +3,17 @@ package bankApplication;
 public abstract class BankAccount {
 
     String name;
-    double balance;
-    double percent;
+    int balance;
+    int percent;
     String accountNumber;
 
-    public BankAccount(String name, double balance, double percent, String accountNumber) {
+    public BankAccount(String name, int balance, int percent, String accountNumber) {
         this.name = name;
         this.balance = balance;
         this.percent = percent;
         this.accountNumber = accountNumber;
     }
+
 
     abstract void topUp(int amount);
 
@@ -28,7 +29,7 @@ public abstract class BankAccount {
         return accountNumber;
     }
 
-    public void setPercents(double percents) {
+    public void setPercents(int percents) {
 
     }
 
@@ -43,6 +44,28 @@ public abstract class BankAccount {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BankAccount)) return false;
+
+        BankAccount that = (BankAccount) o;
+
+        if (getBalance() != that.getBalance()) return false;
+        if (percent != that.percent) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return getAccountNumber() != null ? getAccountNumber().equals(that.getAccountNumber()) : that.getAccountNumber() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = (int) (31 * result + getBalance());
+        result = 31 * result + percent;
+        result = 31 * result + (getAccountNumber() != null ? getAccountNumber().hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "BankAccount{" +
                 "name='" + name + '\'' +
@@ -53,31 +76,3 @@ public abstract class BankAccount {
     }
 }
 
-
-//    We are going to implement simple banking application.
-//        We need to have the next:
-//        - Account with possibility:
-//        * top up
-//        * withdraw
-//        * setting percents
-//        * apply percents on balance
-//        * getting current balance
-//        * getting account number
-//        * sending money another accounts, including accounts from another banks
-
-//        - Debit account:
-//        * does not allow <0 balance
-//        * apply percents on balance -> should increase balance on percents difference
-
-//        - Credit account:
-//        * has credit limit
-//        * apply percents on balance -> in case of <0 balance should decrease it on percents difference
-
-//        - Bank with next properties:
-//        * name
-//        * accounts
-//        * Bank can return account by number
-
-//        - Bank registration system, something like National Bank which:
-//        * contains all registered banks
-//        * can return Bank by name

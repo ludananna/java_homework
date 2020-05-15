@@ -16,9 +16,9 @@ public class CreditAccount extends BankAccount {
     }
 
     @Override
-    void withdraw(BigDecimal amount) {
+    void withdraw(BigDecimal amount) throws ReachedCreditLimitException{
         if (balance.subtract(amount).intValue() < creditLimit) {
-            System.out.println("Credit's limit is " + creditLimit);
+            throw new ReachedCreditLimitException ("Your current balance = " + balance + " and credit limit =" + creditLimit);
         } else {
             balance = balance.subtract(amount);
         }
@@ -32,9 +32,9 @@ public class CreditAccount extends BankAccount {
     }
 
     @Override
-    void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money) {
+    void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money) throws ReachedCreditLimitException{
         if (creditLimit < balance.subtract(money).intValue()) {
-            System.out.println("No enough money");
+            throw new ReachedCreditLimitException ("Your current balance = " + balance + " and credit limit =" + creditLimit);
         } else {
             anotherAccount.topUp(money);
             this.withdraw(money);

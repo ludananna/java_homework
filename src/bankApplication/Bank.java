@@ -13,7 +13,10 @@ public class Bank {
         accounts = new HashMap<>();
     }
 
-    public BankAccount getBankAccount(String accountNumber) {
+    public BankAccount getBankAccount(String accountNumber) throws AccountNotFoundException {
+        if (accounts.get(accountNumber) == null) {
+            throw new AccountNotFoundException("Such an account is not in the catalog");
+        }
         return accounts.get(accountNumber);
     }
 

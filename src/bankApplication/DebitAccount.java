@@ -15,9 +15,9 @@ public class DebitAccount extends BankAccount {
     }
 
     @Override
-    void withdraw(BigDecimal amount) {
+    void withdraw(BigDecimal amount) throws NonSufficientFundsException {
         if (balance.subtract(amount).intValue() < 0) {
-            System.out.println("Not enough money");
+            throw  new  NonSufficientFundsException("Not enough money. Balance = " + balance);
         } else {
             balance = balance.subtract(amount);
         }
@@ -33,9 +33,9 @@ public class DebitAccount extends BankAccount {
     }
 
     @Override
-    void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money) {
+    void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money) throws NonSufficientFundsException {
         if (0 >= balance.subtract(money).intValue()) {
-            System.out.println("No enough money");
+            throw  new  NonSufficientFundsException("Not enough money. Balance = " + balance);
         } else {
             anotherAccount.topUp(money);
             this.withdraw(money);

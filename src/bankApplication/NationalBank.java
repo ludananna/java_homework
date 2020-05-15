@@ -13,15 +13,18 @@ public class NationalBank {
         banks = new HashMap<>();
     }
 
-    public static NationalBank getInstance(){
-        if (instance == null){
+    public static NationalBank getInstance() {
+        if (instance == null) {
             System.out.println("Creating NatBank");
             instance = new NationalBank();
         }
         return instance;
     }
 
-    Bank getBank(String name) {
+    public Bank getBank(String name) throws BankNotFoundException {
+        if (banks.get(name) == null) {
+            throw new BankNotFoundException("Such a bank is not in the catalog");
+        }
         return banks.get(name);
     }
 

@@ -21,11 +21,11 @@ public abstract class BankAccount {
 
     abstract void topUp(BigDecimal amount);
 
-    abstract void withdraw(BigDecimal amount);
+    abstract void withdraw(BigDecimal amount) throws NonSufficientFundsException, ReachedCreditLimitException;
 
     abstract void applyPercents();
 
-    abstract void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money);
+    abstract void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money) throws NonSufficientFundsException, ReachedCreditLimitException;
 
     public BigDecimal getBalance() {
         return balance;
@@ -41,12 +41,12 @@ public abstract class BankAccount {
 
 //    public void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money) {
 //
-//        if (0 >= balance.subtract(money).intValue()) {
+//       if (0 >= balance.subtract(money).intValue()) {
 //            System.out.println("No enough money");
-//        } else {
+//       } else {
 //            anotherAccount.topUp(money);
 //            this.withdraw(money);
-//        }
+//      }
 //    }
 
     @Override

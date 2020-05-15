@@ -1,13 +1,17 @@
 package bankApplication;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
+
 public abstract class BankAccount {
 
     String name;
-    int balance;
-    int percent;
+    BigDecimal balance;
+    double percent;
     String accountNumber;
 
-    public BankAccount(String name, int balance, int percent, String accountNumber) {
+    public BankAccount(String name, BigDecimal balance, double percent, String accountNumber) {
         this.name = name;
         this.balance = balance;
         this.percent = percent;
@@ -15,13 +19,15 @@ public abstract class BankAccount {
     }
 
 
-    abstract void topUp(int amount);
+    abstract void topUp(BigDecimal amount);
 
-    abstract void withdraw(int amount);
+    abstract void withdraw(BigDecimal amount);
 
     abstract void applyPercents();
 
-    public double getBalance() {
+    abstract void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money);
+
+    public BigDecimal getBalance() {
         return balance;
     }
 
@@ -29,19 +35,19 @@ public abstract class BankAccount {
         return accountNumber;
     }
 
-    public void setPercents(int percents) {
+    public void setPercents(double percents) {
 
     }
 
-    public void sendMoneyAnotherAccounts(BankAccount anotherAccount, int money) {
-
-        if ((balance - money) > 0) {
-            anotherAccount.topUp(money);
-            this.withdraw(money);
-        } else {
-            System.out.println("No enough money");
-        }
-    }
+//    public void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money) {
+//
+//        if (0 >= balance.subtract(money).intValue()) {
+//            System.out.println("No enough money");
+//        } else {
+//            anotherAccount.topUp(money);
+//            this.withdraw(money);
+//        }
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -50,17 +56,19 @@ public abstract class BankAccount {
 
         BankAccount that = (BankAccount) o;
 
-        if (getBalance() != that.getBalance()) return false;
-        if (percent != that.percent) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (Double.compare(that.percent, percent) != 0) return false;
+        if (!Objects.equals(name, that.name)) return false;
+        if (getBalance() != null ? !getBalance().equals(that.getBalance()) : that.getBalance() != null) return false;
         return getAccountNumber() != null ? getAccountNumber().equals(that.getAccountNumber()) : that.getAccountNumber() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = (int) (31 * result + getBalance());
-        result = 31 * result + percent;
+        int result;
+        result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (getBalance() != null ? getBalance().hashCode() : 0);
+        long temp = Double.doubleToLongBits(percent);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (getAccountNumber() != null ? getAccountNumber().hashCode() : 0);
         return result;
     }
@@ -74,5 +82,6 @@ public abstract class BankAccount {
                 ", accountNumber='" + accountNumber + '\'' +
                 '}';
     }
+
 }
 

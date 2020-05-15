@@ -1,33 +1,32 @@
 package bankApplication;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestAccount {
     public static void main(String[] args) {
 
-        BankAccount creditAccount = new CreditAccount("Millennium", 100, 4, "CA001", -1000);
-        BankAccount debitAccount = new DebitAccount("Millennium", 100, 3, "DA001");
+        BankAccount creditAccount = new CreditAccount("Millennium", BigDecimal.valueOf(100.0), 4.0, "CA001", -1000);
+        BankAccount debitAccount = new DebitAccount("Millennium",  BigDecimal.valueOf(100.0), 3.0, "DA001");
 
-        Map<String, BankAccount> accountMillenniumMap = new HashMap<>();
-        accountMillenniumMap.put("creditAccount", creditAccount);
-        accountMillenniumMap.put("debitAccount", debitAccount);
+        BankAccount accountCredit = new CreditAccount("Pekao", BigDecimal.valueOf(100.0), 3, "CA002", -1000);
+        BankAccount accountDebit = new DebitAccount("Pekao", BigDecimal.valueOf(100.0), 2, "DA002");
 
-        BankAccount accountCredit = new CreditAccount("Pekao", 100, 3, "CA002", -1000);
-        BankAccount accountDebit = new DebitAccount("Pekao", 100, 2, "DA002");
+        Bank millennium = new Bank("Millennium");
+        millennium.registerAccount(creditAccount);
+        millennium.registerAccount(debitAccount);
 
-        Map<String, BankAccount> accountPekaoMap = new HashMap<>();
-        accountPekaoMap.put("accountCredit", accountCredit);
-        accountPekaoMap.put("accountDebit", accountDebit);
-
-        Bank millennium = new Bank("Millennium", accountMillenniumMap);
-        Bank pekao = new Bank("Pekao", accountPekaoMap);
+        Bank pekao = new Bank("Pekao");
+        pekao.registerAccount(accountCredit);
+        pekao.registerAccount(accountDebit);
 
         Map<String, Bank> bankNationalMap = new HashMap<>();
         bankNationalMap.put("Millennium", millennium);
         bankNationalMap.put("Pekao", pekao);
 
-        NationalBank nationalBank = new NationalBank(bankNationalMap);
+        NationalBank nationalBank = NationalBank.getInstance();
+        nationalBank.setBanks(bankNationalMap);
         System.out.println("nationalBank = " + nationalBank);
 
         nationalBank.getBank("Millennium");
@@ -45,38 +44,37 @@ public class TestAccount {
         pekao.getBankAccount("DA002");
         System.out.println("pekao = " + pekao);
 
+        creditAccount.topUp(BigDecimal.valueOf(300.));
+        creditAccount.withdraw(BigDecimal.valueOf(10.0));
+        System.out.println("creditAccount = " + creditAccount);
+        System.out.println("debitAccount = " + debitAccount);
 
+        creditAccount.sendMoneyAnotherAccounts(debitAccount, BigDecimal.valueOf(50.0));
+        System.out.println("creditAccount = " + creditAccount);
+        System.out.println("debitAccount = " + debitAccount);
 
-//        creditAccount.topUp(300);
-//        creditAccount.withdraw(10);
-//        System.out.println("creditAccount = " + creditAccount);
-//        System.out.println("debitAccount = " + debitAccount);
-//
-//        creditAccount.sendMoneyAnotherAccounts(debitAccount, 50);
-//        System.out.println("creditAccount = " + creditAccount);
-//        System.out.println("debitAccount = " + debitAccount);
-//
-//        creditAccount.withdraw(500);
-//        System.out.println("creditAccount = " + creditAccount);
-//
-//        creditAccount.applyPercents();
-//        System.out.println("creditAccount = " + creditAccount);
-//
-//        debitAccount.applyPercents();
-//        System.out.println("debitAccount = " + debitAccount);
-//
-//        debitAccount.sendMoneyAnotherAccounts(creditAccount, 500);
-//        System.out.println("debitAccount = " + debitAccount);
-//        System.out.println("creditAccount = " + creditAccount);
-//
-//        debitAccount.withdraw(500);
-//        System.out.println("debitAccount = " + debitAccount);
-//
-//        creditAccount.withdraw(1000);
-//        System.out.println("creditAccount = " + creditAccount);
-//
-//        creditAccount.sendMoneyAnotherAccounts(debitAccount, 1000);
-//        System.out.println("creditAccount = " + creditAccount);
+        creditAccount.withdraw(BigDecimal.valueOf(500.0));
+        System.out.println("creditAccount = " + creditAccount);
+
+        creditAccount.applyPercents();
+        System.out.println("creditAccount = " + creditAccount);
+
+        debitAccount.applyPercents();
+        System.out.println("debitAccount = " + debitAccount);
+
+        debitAccount.sendMoneyAnotherAccounts(creditAccount, BigDecimal.valueOf(500.0));
+        System.out.println("debitAccount = " + debitAccount);
+        System.out.println("creditAccount = " + creditAccount);
+
+        debitAccount.withdraw(BigDecimal.valueOf(500.0));
+        System.out.println("debitAccount = " + debitAccount);
+
+        creditAccount.withdraw(BigDecimal.valueOf(1000.0));
+        System.out.println("creditAccount = " + creditAccount);
+
+        creditAccount.sendMoneyAnotherAccounts(debitAccount, BigDecimal.valueOf(1000.0));
+        System.out.println("creditAccount = " + creditAccount);
+        System.out.println("debitAccount = " + debitAccount);
 
     }
 }

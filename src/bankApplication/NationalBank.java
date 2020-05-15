@@ -4,22 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NationalBank {
+
+    private static NationalBank instance;
     private Map<String, Bank> banks;
 
 
-    public NationalBank() {
+    private NationalBank() {
         banks = new HashMap<>();
     }
 
-    public NationalBank(Map<String, Bank> banks) {
-        this.banks = banks;
+    public static NationalBank getInstance(){
+        if (instance == null){
+            System.out.println("Creating NatBank");
+            instance = new NationalBank();
+        }
+        return instance;
     }
 
-    public Bank getBank(String name) {
+    Bank getBank(String name) {
         return banks.get(name);
     }
 
-    public void registerBank(Bank bank){
+    private void registerBank(Bank bank) {
         banks.put(bank.getName(), bank);
     }
 
@@ -28,5 +34,13 @@ public class NationalBank {
         return "NationalBank{" +
                 "banks=" + banks +
                 '}';
+    }
+
+    public Map<String, Bank> getBanks() {
+        return banks;
+    }
+
+    public void setBanks(Map<String, Bank> banks) {
+        this.banks = banks;
     }
 }

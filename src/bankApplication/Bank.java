@@ -8,13 +8,9 @@ public class Bank {
     private String name;
     private Map<String, BankAccount> accounts;
 
-    public Bank() {
+    public Bank(String bankName) {
+        this.name = bankName;
         accounts = new HashMap<>();
-    }
-
-    public Bank(String name, Map<String, BankAccount> accounts) {
-        this.name = name;
-        this.accounts = accounts;
     }
 
     public BankAccount getBankAccount(String accountNumber) {
@@ -28,10 +24,6 @@ public class Bank {
 
     public String getName() {
         return name;
-    }
-
-    public Map<String, BankAccount> getAccounts() {
-        return accounts;
     }
 
     @Override

@@ -1,31 +1,47 @@
 package bankApplication;
 
+import java.math.BigDecimal;
+
 public class DebitAccount extends BankAccount {
 
 
-    public DebitAccount(String name, int balance, int percent, String accountNumber) {
+    public DebitAccount(String name, BigDecimal balance, double percent, String accountNumber) {
         super(name, balance, percent, accountNumber);
     }
 
     @Override
-    void topUp(int amount) {
-        balance = balance + amount;
+    void topUp(BigDecimal amount) {
+
     }
 
     @Override
-    void withdraw(int amount) {
-        if ((balance-amount) < 0) {
-            System.out.println("No enough money");
+    void withdraw(BigDecimal amount) {
+        if (balance.subtract(amount).intValue() < 0) {
+            System.out.println("Not enough money");
         } else {
-            balance = balance - amount;
+            balance = balance.subtract(amount);
         }
     }
+
+
 
     @Override
     void applyPercents() {
-        if (balance > 0) {
-            balance =  (balance+(balance*percent /100));
+        if (balance.intValue() > 0) {
+            balance = (balance.add(balance.multiply(BigDecimal.valueOf(percent)).divide(BigDecimal.valueOf(100.0))));
         }
     }
+
+    @Override
+    void sendMoneyAnotherAccounts(BankAccount anotherAccount, BigDecimal money) {
+        if (0 >= balance.subtract(money).intValue()) {
+            System.out.println("No enough money");
+        } else {
+            anotherAccount.topUp(money);
+            this.withdraw(money);
+        }
+    }
+
+
 }
 

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum EnumDays {
-    MON("Monday", "Poniedziałek ", true),
+    MON("Monday", "Poniedziałek", true),
     TUE("Tuesday", "Wtorek", true),
     WED("Wednesday", "Środa", true),
     THU("Thursday", "Czwartek", true),
-    FRI("Friday", "Piątek ", true),
+    FRI("Friday", "Piątek", true),
     SAT("Saturday", "Sobota", false),
     SUN("Sunday", "Niedziela", false);
 
@@ -34,19 +34,30 @@ public enum EnumDays {
         return workingDay;
     }
 
-    public String fromEnglishName() {
-        return englishName;
+    public static EnumDays fromEnglishName(String englishDayName) {
+        for (EnumDays day : values()) {
+            if (day.englishName.equals(englishDayName)) {
+                return day;
+            }
+        }
+        throw new RuntimeException("There is no such day like " + englishDayName);
     }
 
-    public String fromPolishName() {
-        return polishName;
+    public static EnumDays fromPolishName(String polishDayName) {
+        for (EnumDays day : values()) {
+            if (day.polishName.equals(polishDayName)) {
+                return day;
+            }
+        }
+        throw new RuntimeException("There is no such day like " + polishDayName);
     }
+
 
     public boolean isWeekend() {
         return !workingDay;
     }
 
-    public List<EnumDays> getWeekends() {
+    public static List<EnumDays> getWeekends() {
         List<EnumDays> enumDays = new ArrayList<>();
         for (EnumDays value : values()) {
             if (!value.workingDay) {
@@ -57,7 +68,7 @@ public enum EnumDays {
     }
 
 
-    public List<EnumDays> getWorkingDays() {
+    public static List<EnumDays> getWorkingDays() {
         List<EnumDays> enumDays = new ArrayList<>();
         for (EnumDays value : values()) {
             if (value.workingDay) {

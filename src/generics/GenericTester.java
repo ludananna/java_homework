@@ -51,7 +51,7 @@ public class GenericTester {
         Shelf foodShelf = new Shelf();
         foodShelf.setFoods(foods);
 
-        
+
 
 
 

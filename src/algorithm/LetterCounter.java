@@ -12,7 +12,6 @@ public class LetterCounter {
 
         Map<Character, Integer> sentenceMap = new HashMap<>();
         for (char aChar : chars) {
-
             if (sentenceMap.containsKey(aChar)) {
                 Integer integer = sentenceMap.get(aChar);
                 sentenceMap.put(aChar, integer + 1);
@@ -23,4 +22,3 @@ public class LetterCounter {
         System.out.println("sentenceMap = " + sentenceMap);
     }
 }
-

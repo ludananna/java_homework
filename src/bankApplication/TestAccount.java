@@ -28,33 +28,35 @@ public class TestAccount {
         NationalBank nationalBank = NationalBank.getInstance();
         nationalBank.setBanks(bankNationalMap);
         System.out.println("nationalBank = " + nationalBank);
-        Bank bankMillenium = null;
+        Bank bankMillennium = null;
         BankAccount accountMillennium = null;
 
         try {
-           bankMillenium = nationalBank.getBank("Millennium");
+            bankMillennium = nationalBank.getBank("Millennium").orElseThrow(() -> new BankNotFoundException("Such a bank is not in the catalog"));
         } catch (BankNotFoundException e) {
             System.out.println(e.getMessage());
         }
-  //      millennium.getBankAccount("CA001");
+
+        //      millennium.getBankAccount("CA001");
  //       millennium.getBankAccount("DA001");
  //       System.out.println("millennium = " + millennium);
 
         try {
-            accountMillennium = bankMillenium.getBankAccount( "CA00");
+            accountMillennium = bankMillennium.getBankAccount( "CA0").orElseThrow(() -> new AccountNotFoundException("Such an account is not in the catalog"));;
         } catch (AccountNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        try {
-            debitAccount.withdraw(BigDecimal.valueOf(500.0));
-        } catch (NonSufficientFundsException | ReachedCreditLimitException e){
-            System.out.println(e.getMessage());
-        }
-        try {
-            creditAccount.withdraw(BigDecimal.valueOf(2000.0));
-        }catch (ReachedCreditLimitException | NonSufficientFundsException e){
-            System.out.println(e.getMessage());
-        }
+
+//        try {
+//            debitAccount.withdraw(BigDecimal.valueOf(500.0));
+//        } catch (NonSufficientFundsException | ReachedCreditLimitException e){
+//            System.out.println(e.getMessage());
+//        }
+//        try {
+//            creditAccount.withdraw(BigDecimal.valueOf(2000.0));
+//        }catch (ReachedCreditLimitException | NonSufficientFundsException e){
+//            System.out.println(e.getMessage());
+//        }
 
 
 //        nationalBank.getBank("Pekao");

@@ -2,6 +2,7 @@ package bankApplication;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class NationalBank {
 
@@ -21,11 +22,8 @@ public class NationalBank {
         return instance;
     }
 
-    public Bank getBank(String name) throws BankNotFoundException {
-        if (banks.get(name) == null) {
-            throw new BankNotFoundException("Such a bank is not in the catalog");
-        }
-        return banks.get(name);
+    public Optional<Bank> getBank(String name) {
+        return Optional.ofNullable(banks.get(name));
     }
 
     private void registerBank(Bank bank) {

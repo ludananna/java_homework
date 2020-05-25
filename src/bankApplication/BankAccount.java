@@ -2,6 +2,7 @@ package bankApplication;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.Optional;
 
 
 public abstract class BankAccount {
@@ -10,6 +11,8 @@ public abstract class BankAccount {
     BigDecimal balance;
     double percent;
     String accountNumber;
+
+
 
     public BankAccount(String name, BigDecimal balance, double percent, String accountNumber) {
         this.name = name;

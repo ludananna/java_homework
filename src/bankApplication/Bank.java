@@ -2,6 +2,7 @@ package bankApplication;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class Bank {
 
@@ -13,12 +14,17 @@ public class Bank {
         accounts = new HashMap<>();
     }
 
-    public BankAccount getBankAccount(String accountNumber) throws AccountNotFoundException {
-        if (accounts.get(accountNumber) == null) {
-            throw new AccountNotFoundException("Such an account is not in the catalog");
-        }
-        return accounts.get(accountNumber);
+
+    public Optional<BankAccount> getBankAccount(String name) {
+        return Optional.ofNullable(accounts.get(name));
     }
+
+//    public BankAccount getBankAccount(String accountNumber) throws AccountNotFoundException {
+//        if (accounts.get(accountNumber) == null) {
+//            throw new AccountNotFoundException("Such an account is not in the catalog");
+//        }
+//        return accounts.get(accountNumber);
+//    }
 
     public void registerAccount(BankAccount account){
         accounts.put(account.getAccountNumber(),account);

@@ -12,6 +12,6 @@ public class PersonsTester {
         System.out.println("p1.getUserName() = " + p1.getUserName());
         System.out.println("p2.getUserName() = " + p2.getUserName());
         System.out.println("p3.getUserName() = " + p3.getUserName());
-
+        System.out.println("p3.getUserName() = " + p3.getUserName());
     }
 }

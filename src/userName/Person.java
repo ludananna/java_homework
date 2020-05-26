@@ -34,7 +34,7 @@ public class Person {
     public LocalDate getBirthDay() {
         return birthDay;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

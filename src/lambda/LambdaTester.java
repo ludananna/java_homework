@@ -31,7 +31,7 @@ public class LambdaTester {
 
         int strLength = returnInt(bookName4,s -> s.length());
 
-        System.out.println(strLength);
+        System.out.println("strLength =" + strLength);
 
 
         int strWords = returnInt(bookName4, s -> s.split(" ").length );

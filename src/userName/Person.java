@@ -17,7 +17,7 @@ public class Person {
 
 
     public String getUserName() {
-        return firstName.toLowerCase().toCharArray()[0]
+        return firstName.toLowerCase().charAt(0)
                 + lastName.toLowerCase()
                 + Optional.ofNullable(birthDay).map(LocalDate::getYear).orElseGet(() -> LocalDate.now().getYear());
     }

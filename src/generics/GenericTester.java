@@ -41,18 +41,17 @@ public class GenericTester {
         fantasyBox.add(liveship);
 
 
-        Shelf toyShelf = new Shelf();
-        toyShelf.setToys(toys);
+        Shelf<Box<Toy>> toyShelf = new Shelf<>();
+        toyShelf.addBox(toys);
 
-        Shelf bookShelf = new Shelf();
-        bookShelf.setBooks(books);
-//        bookShelf.setBooks(fantasyBox); I think class Fantasy inheritance class Book, but fantasyBox cannot inheritance Box<Book>.
+        Shelf<Box<Book>> bookShelf = new Shelf<>();
+        bookShelf.addBox(books);
 
-        Shelf foodShelf = new Shelf();
-        foodShelf.setFoods(foods);
+        //bookShelf.addBox(fantasyBox);
+        //I think class Fantasy inheritance class Book, but fantasyBox cannot inheritance Box<Book>.
 
-
-
+        Shelf <Box<Food>>foodShelf = new Shelf<>();
+        foodShelf.addBox(foods);
 
 
 

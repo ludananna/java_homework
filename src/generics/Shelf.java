@@ -1,34 +1,18 @@
 package generics;
 
-public class Shelf {
-
-    private Box<Toy> toys;
-    private Box<Book> books;
-    private Box<Food> foods;
+import java.util.ArrayList;
+import java.util.List;
 
 
+public class Shelf<T> {
 
-    public void setToys(Box<Toy> toys) {
-        this.toys = toys;
+    List<T> boxes = new ArrayList<>();
+
+    public void addBox(T boxes) {
+        this.boxes.add(boxes);
     }
 
-
-    public void setBooks(Box<Book> books) {
-        this.books = books;
+    List<T> getBoxes() {
+        return boxes;
     }
-
-
-    public void setFoods(Box<Food> foods) {
-        this.foods = foods;
-    }
-
-    @Override
-    public String toString() {
-        return "Shelf{" +
-                "toys=" + toys +
-                ", books=" + books +
-                ", foods=" + foods +
-                '}';
-    }
-
 }

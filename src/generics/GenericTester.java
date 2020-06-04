@@ -44,17 +44,19 @@ public class GenericTester {
         Shelf<Box<Toy>> toyShelf = new Shelf<>();
         toyShelf.addBox(toys);
 
-        Shelf<Box<Book>> bookShelf = new Shelf<>();
+        Shelf<Box<? extends Book>> bookShelf = new Shelf<>();
         bookShelf.addBox(books);
-
-        //bookShelf.addBox(fantasyBox);
-        //I think class Fantasy inheritance class Book, but fantasyBox cannot inheritance Box<Book>.
+        bookShelf.addBox(fantasyBox);
 
         Shelf <Box<Food>>foodShelf = new Shelf<>();
         foodShelf.addBox(foods);
 
 
-
+        Shelf<Box<? extends Item>> universalShelf = new Shelf<>();
+        universalShelf.addBox(fantasyBox);
+        universalShelf.addBox(books);
+        universalShelf.addBox(toys);
+        universalShelf.addBox(foods);
     }
 
 

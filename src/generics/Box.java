@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Box<T> {
+public class Box<T extends Item> {
 
     List<T> items = new ArrayList<>();
     T object;
